@@ -1,0 +1,18 @@
+# Changelog - GUTS & GUYS Apparel Website
+
+All notable developments and commit updates for this project are recorded below:
+
+## [1.2.0] - 2026-08-14
+### Added
+- Linked high-resolution men's fashion and suit imagery from Unsplash across all pages.
+- Embedded store map frame pointing to Polokwane boutique region on `pages/contact.html`.
+
+## [1.1.0] - 2026-08-11
+### Added
+- Configured structured fitting request form inputs on `pages/enquiry.html`.
+- Implemented company history, master tailor qualifications, and sustainable textile details on `pages/aboutus.html`.
+
+## [1.0.0] - 2026-08-05
+### Added
+- Initialized Git repository structure.
+- Developed multi-page HTML semantic layout and global menu header navigation.

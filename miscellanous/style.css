@@ -1,0 +1,500 @@
+/* ==========================================================================
+   1. GLOBAL RESET & BASE TOKENS (Design Tokens & CSS Reset)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Color Palette - Premium Editorial / Streetwear Aesthetic */
+  --primary-color: #121212;
+  --secondary-color: #d4af37; /* Warm Gold */
+  --accent-color: #c93b2b;    /* Crimson Accent */
+  --light-bg: #f9f9fb;
+  --card-bg: #ffffff;
+  --dark-text: #1a1a1a;
+  --muted-text: #606060;
+  --border-color: #e2e8f0;
+
+  /* Elevation Shadows & Transitions */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  /* Harmonious Modular Typography Scale (Fluid Clamp) */
+  --font-family-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-base: 100%; /* 16px default */
+  --scale-h1: clamp(2.25rem, 5vw, 3.5rem);
+  --scale-h2: clamp(1.75rem, 3.5vw, 2.5rem);
+  --scale-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --scale-body: clamp(0.95rem, 1.5vw, 1.1rem);
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-main);
+  line-height: 1.7;
+  color: var(--dark-text);
+  background-color: var(--light-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY & VISUAL DECORATION
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--primary-color);
+  margin-bottom: 0.85rem;
+}
+
+h1 { font-size: var(--scale-h1); }
+h2 { font-size: var(--scale-h2); }
+h3 { font-size: var(--scale-h3); }
+
+p {
+  font-size: var(--scale-body);
+  color: var(--muted-text);
+  margin-bottom: 1.25rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+/* Focus and State Micro-Interactions */
+a:hover {
+  color: var(--secondary-color);
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--secondary-color);
+  outline-offset: 3px;
+}
+
+/* Call To Action Buttons & Interactive States */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 1.85rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Interactive Pseudo-Classes: :hover, :focus, :active */
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================================================
+   3. LAYOUT STRUCTURE (DESKTOP FIRST & GRID ARCHITECTURE)
+   ========================================================================== */
+.header-navigation {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--primary-color);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2.25rem;
+}
+
+.nav-item a {
+  font-weight: 600;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-item a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary-color);
+  transition: var(--transition-smooth);
+}
+
+.nav-item a:hover::after {
+  width: 100%;
+}
+
+.main-wrapper {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 0 2rem;
+}
+
+/* Grid Layout for Cards, Portfolio, Events, Menu Items */
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2.5rem 0;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--secondary-color);
+}
+
+/* Modern Responsive Image Media Rules */
+.responsive-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+
+.site-footer {
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  padding: 3rem 2rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   4. RESPONSIVE DESIGN & MEDIA QUERIES (BREAKPOINTS)
+   ========================================================================== */
+
+/* Tablet Viewport Adjustments (Max-width: 992px) */
+@media screen and (max-width: 992px) {
+  .grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nav-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-list {
+    gap: 1.25rem;
+  }
+}
+
+/* Mobile Viewport Adjustments (Max-width: 600px) */
+@media screen and (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-item a {
+    display: block;
+    padding: 0.75rem 1rem;
+    background-color: var(--light-bg);
+    border-radius: 4px;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr; /* Switch multi-column to single-column */
+  }
+
+  .main-wrapper {
+    padding: 0 1rem;
+    margin: 1.5rem auto;
+  }
+
+  .btn {
+    width: 100%; /* Accessible full-width touch targets */
+    text-align: center;
+  }
+}
+/* ==========================================================================
+   5. ADVANCED FORM STYLING & ACCESSIBLE INPUTS
+   ========================================================================== */
+.form-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+  max-width: 720px;
+  margin: 2rem auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-family-main);
+  font-size: 1rem;
+  color: var(--dark-text);
+  background-color: var(--light-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--secondary-color);
+  background-color: var(--card-bg);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+  outline: none;
+}
+
+.form-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Custom Checkbox & Radio Alignment */
+.form-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.form-checkbox-group input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  accent-color: var(--secondary-color);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. HERO BANNER & PROMOTIONAL SECTIONS
+   ========================================================================== */
+.hero-banner {
+  position: relative;
+  background-color: var(--primary-color);
+  color: var(--card-bg);
+  padding: 5rem 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0.4) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.hero-content h1 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  color: #d1d5db;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  margin-bottom: 2rem;
+}
+
+/* Badge Component */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 50px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   7. KEYFRAME ANIMATIONS & DECORATIVE COMPONENTS
+   ========================================================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Skeleton Loader State for Async Content */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* ==========================================================================
+   8. DARK PREFERENCE OVERRIDES (SYSTEM COLOR SCHEME DETECT)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #f9f9fb;
+    --secondary-color: #e5c158;
+    --light-bg: #121212;
+    --card-bg: #1e1e1e;
+    --dark-text: #f0f0f0;
+    --muted-text: #a0a0a0;
+    --border-color: #2e2e2e;
+  }
+
+  .header-navigation {
+    background-color: #1a1a1a;
+  }
+
+  .btn-primary {
+    background-color: var(--secondary-color);
+    color: #121212;
+  }
+
+  .btn-primary:hover {
+    background-color: #ffffff;
+    color: #121212;
+  }
+}
+
+/* ==========================================================================
+   9. UTILITY CLASSES (LAYOUT & SPACING HELPERS)
+   ========================================================================== */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.hidden { display: none !important; }
