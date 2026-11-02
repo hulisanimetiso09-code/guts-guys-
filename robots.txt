@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://hulisanimetiso09-code.github.io/part-2-submission/sitemap.xml
